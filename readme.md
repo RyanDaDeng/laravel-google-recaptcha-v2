@@ -354,6 +354,6 @@ MIT. Please see the [license file](license.md) for more information.
 [link-author]: https://github.com/ryandadeng
 [link-coverage]: https://coveralls.io/github/RyanDaDeng/laravel-google-recaptcha-v2?branch=master
 [link-build]: https://travis-ci.org/RyanDaDeng/laravel-google-recaptcha-v2
-[link-styleci]: https://github.styleci.io/repos/146857583
+[link-styleci]: https://github.styleci.io/repos/163373553
 [link-unstable]: https://packagist.org/packages/timehunter/laravel-google-recaptcha-v2
 
