@@ -1,0 +1,55 @@
+{
+    "name": "timehunter/laravel-google-recaptcha-v2",
+    "description": "Laravel Package for reCAPTCHA v2",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ryan Deng",
+            "email": "ryandadeng@gmail.com",
+            "homepage": "https://ryandeng.com"
+        }
+    ],
+    "homepage": "https://github.com/RyanDaDeng/laravel-google-recaptcha-v2",
+    "keywords": [
+        "laravel recaptcha",
+        "googlerecaptcha",
+        "google recaptcha",
+        "google recaptcha v2",
+        "recaptcha v2",
+        "laravel google recaptcha v2",
+        "laravel google recaptcha",
+        "recaptcha",
+        "recaptcha v2 laravel",
+        "laravel recaptcha v2",
+        "laravel"
+    ],
+    "require": {
+        "php": ">=5.5",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "orchestra/testbench": "~3.0",
+        "php-coveralls/php-coveralls": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "TimeHunter\\LaravelGoogleReCaptchaV2\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TimeHunter\\LaravelGoogleReCaptchaV2\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TimeHunter\\LaravelGoogleReCaptchaV2\\Providers\\GoogleReCaptchaV2ServiceProvider"
+            ],
+            "aliases": {
+                "GoogleReCaptchaV2": "TimeHunter\\LaravelGoogleReCaptchaV2\\Facades\\GoogleReCaptchaV2"
+            }
+        }
+    }
+}
