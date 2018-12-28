@@ -126,7 +126,7 @@ Include Template script in your bottom/header of your page, params should follow
     <input type="submit" value="submit">
 </form>
 
-{!!  GoogleReCaptchaV2::render('contact_us_id'=>'contact_us') !!}
+{!!  GoogleReCaptchaV2::render('contact_us_id') !!}
 
 ```
 
