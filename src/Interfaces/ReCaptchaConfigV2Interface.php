@@ -35,7 +35,6 @@ interface ReCaptchaConfigV2Interface
      */
     public function getOptions();
 
-
     /**
      * @return string
      */

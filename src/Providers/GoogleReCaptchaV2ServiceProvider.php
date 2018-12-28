@@ -8,8 +8,8 @@ use TimeHunter\LaravelGoogleReCaptchaV2\Core\CurlRequestClient;
 use TimeHunter\LaravelGoogleReCaptchaV2\Core\GuzzleRequestClient;
 use TimeHunter\LaravelGoogleReCaptchaV2\Configurations\ReCaptchaConfigV2;
 use TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\RequestClientInterface;
-use TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\ReCaptchaConfigV2Interface;
 use TimeHunter\LaravelGoogleReCaptchaV2\Services\GoogleReCaptchaV2Service;
+use TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\ReCaptchaConfigV2Interface;
 
 class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
 {
@@ -73,6 +73,7 @@ class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
         }
         $this->app->bind('GoogleReCaptchaV2', function () {
             $service = new GoogleReCaptchaV2Service(app(ReCaptchaConfigV2Interface::class), app(RequestClientInterface::class));
+
             return new GoogleReCaptchaV2($service);
         });
     }
@@ -89,10 +90,9 @@ class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
             __DIR__.'/../../config/googlerecaptchav2.php' => config_path('googlerecaptchav2.php'),
         ], 'googlerecaptchav2.config');
 
-
         // Publishing the views.
         $this->publishes([
-            __DIR__ . '/../../resources/views' => base_path('resources/views'),
+            __DIR__.'/../../resources/views' => base_path('resources/views'),
         ], 'googlerecaptchav2.views');
     }
 
