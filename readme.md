@@ -24,11 +24,11 @@ If you want to use v3, please go to: https://github.com/RyanDaDeng/laravel-googl
 
 <img src="https://github.com/RyanDaDeng/aws-study-notes/blob/master/0DB7E6BA-15ED-45E7-AA12-3CEA05E1483E.png" width="250" height="300" />
 
-## Invisible
+## Invisible - hidden
 
 <img src="https://github.com/RyanDaDeng/aws-study-notes/blob/master/881545398213_.pic.jpg" width="250" height="300" />
 
-## Inline
+## Invisible - Inline
 
 <img src="https://github.com/RyanDaDeng/aws-study-notes/blob/master/891545398531_.pic.jpg" width="250" height="300" />
 
@@ -42,11 +42,12 @@ If you want to make your own validation rules, you have full access to modify te
 
 ## Features
 
-- Support invisible, global and inline badge style
+- Support invisible, corner and inline badge style
 - Support multiple reCAPTCHA on the same page for different forms
 - Support multiple actions to be placed on the same page
 - Support custom implementation on config interface
 - Support custom implementation on request method interface 
+- Support custom implementation on Template file
 
 
 ## Requirement
@@ -89,9 +90,15 @@ And also
 ```
 
 
-If your Laravel framework version is >= 5.5, just run the following command to publish views and config.
+If your Laravel framework version is >= 5.5, just run the following command to publish config.
 ```sh 
-$ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider"
+$ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider" --tag=googlerecaptchav2.config
+```
+
+If you want to modify or customise your own template, you can publish a default view first:
+
+```sh 
+$ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider" --tag=googlerecaptchav2.views
 ```
 
 After installation, you should see a googlerecaptchaV2/template.blade under views folder and googlerecaptchaV2.php in your app/config folder.
@@ -135,9 +142,10 @@ Include Template script in your bottom/header of your page, params should follow
 
 The backend request will receive a value for 'g-recaptcha-response', please take a look at Sample Use Case and Facade usage sections.
 
-## Badge Display
+#### Badge Display
 
-Inline
+
+### Checkbox
 
 1. Go to config file, and set 
 ``` PHP
@@ -147,10 +155,28 @@ Inline
         ...
     ]
 ```
-2. Badge will be displayed as inline format within the form.
+2. Badge will be displayed as checkbox format within the form.
 
+### Invisible - inline
 
-Invisible
+1. Set size as invisible
+``` PHP
+    [
+        ...
+        'size' => 'invisible'
+        ...
+    ]
+```
+2. Set badge as bottomright/bottomleft
+``` PHP
+    [
+        ...
+        'badge' => 'inline'
+        ...
+    ]
+```
+
+### Invisible - hidden
 
 1. Set size as invisible
 ``` PHP
@@ -169,7 +195,7 @@ Invisible
         <a href="https://policies.google.com/terms">Terms of Service</a> apply.
  ```
 
-Corner
+### Corner
 
 1. Set size as invisible
 ``` PHP
@@ -205,7 +231,7 @@ You can also directly use registered service by calling the following method.
 - verifyResponse() which accepts the token value from your form. This return Google reCAPTCHA Response object.
 
 ``` php
-   GoogleReCaptchaV2::setAction($action)->verifyResponse($value, $ip=null);
+   GoogleReCaptchaV2::verifyResponse($value, $ip=null);
 ```
 
 Example Usage
