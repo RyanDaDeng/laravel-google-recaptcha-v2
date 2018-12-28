@@ -346,7 +346,7 @@ MIT. Please see the [license file](license.md) for more information.
 [ico-downloads]: https://poser.pugx.org/timehunter/laravel-google-recaptcha-v2/downloads
 [ico-coverage]: https://coveralls.io/repos/github/RyanDaDeng/laravel-google-recaptcha-v2/badge.svg?branch=master&service=github
 [ico-build]: https://travis-ci.org/RyanDaDeng/laravel-google-recaptcha-v2.svg?branch=master
-[ico-styleci]: https://github.styleci.io/repos/146857583/shield
+[ico-styleci]: https://github.styleci.io/repos/163373553/shield
 [ico-unstable]: https://poser.pugx.org/timehunter/laravel-google-recaptcha-v2/v/unstable
 
 [link-packagist]: https://packagist.org/packages/timehunter/laravel-google-recaptcha-v2
