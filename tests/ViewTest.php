@@ -21,7 +21,6 @@ class ViewTest extends TestCase
 
         $clientStub = $this->createMock(GuzzleRequestClient::class);
 
-
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
@@ -49,7 +48,6 @@ class ViewTest extends TestCase
 
         $clientStub = $this->createMock(GuzzleRequestClient::class);
 
-
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
@@ -60,8 +58,6 @@ class ViewTest extends TestCase
         $this->assertEquals(false, $data['inline']);
         $this->assertEquals('en', $data['language']);
     }
-
-
 
     public function testView3()
     {
@@ -83,11 +79,10 @@ class ViewTest extends TestCase
 
         $clientStub = $this->createMock(GuzzleRequestClient::class);
 
-
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
-        $data = $service->prepareViewData('contact_us_id','contact_us_id2');
+        $data = $service->prepareViewData('contact_us_id', 'contact_us_id2');
 
         $this->assertEquals('test1', $data['publicKey']);
         $this->assertEquals('contact_us_id', $data['ids'][0]);

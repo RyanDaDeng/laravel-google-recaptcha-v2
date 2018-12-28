@@ -3,9 +3,9 @@
 namespace TimeHunter\Tests\GoogleReCaptchaV2;
 
 use PHPUnit\Framework\TestCase;
-use TimeHunter\LaravelGoogleReCaptchaV2\Core\GoogleReCaptchaV2Response;
 use TimeHunter\LaravelGoogleReCaptchaV2\GoogleReCaptchaV2;
 use TimeHunter\LaravelGoogleReCaptchaV2\Core\GuzzleRequestClient;
+use TimeHunter\LaravelGoogleReCaptchaV2\Core\GoogleReCaptchaV2Response;
 use TimeHunter\LaravelGoogleReCaptchaV2\Configurations\ReCaptchaConfigV2;
 use TimeHunter\LaravelGoogleReCaptchaV2\Services\GoogleReCaptchaV2Service;
 
@@ -43,7 +43,6 @@ class ConfigTest extends TestCase
         $clientStub->method('post')
             ->willReturn(false);
 
-
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
@@ -70,7 +69,6 @@ class ConfigTest extends TestCase
         $clientStub->method('post')
             ->willReturn($testJson);
 
-
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
@@ -92,7 +90,6 @@ class ConfigTest extends TestCase
         $clientStub = $this->createMock(GuzzleRequestClient::class);
         $clientStub->method('post')
             ->willReturn($testJson);
-
 
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
@@ -118,7 +115,6 @@ class ConfigTest extends TestCase
         $clientStub = $this->createMock(GuzzleRequestClient::class);
         $clientStub->method('post')
             ->willReturn($testJson);
-
 
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
@@ -147,7 +143,6 @@ class ConfigTest extends TestCase
         $clientStub->method('post')
             ->willReturn($testJson);
 
-
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
@@ -155,5 +150,4 @@ class ConfigTest extends TestCase
 
         $this->assertEquals(true, $response->isSuccess());
     }
-
 }

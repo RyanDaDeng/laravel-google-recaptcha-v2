@@ -8,10 +8,9 @@
 
 namespace TimeHunter\LaravelGoogleReCaptchaV2;
 
-
 use TimeHunter\LaravelGoogleReCaptchaV2\Core\GoogleReCaptchaV2Response;
-use TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\ReCaptchaConfigV2Interface;
 use TimeHunter\LaravelGoogleReCaptchaV2\Services\GoogleReCaptchaV2Service;
+use TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\ReCaptchaConfigV2Interface;
 
 class GoogleReCaptchaV2
 {
@@ -35,7 +34,6 @@ class GoogleReCaptchaV2
      */
     public function prepareViewData(...$ids)
     {
-
         $data = [
             'publicKey' => $this->getConfig()->getSiteKey(),
             'ids' => $ids,
@@ -43,7 +41,7 @@ class GoogleReCaptchaV2
             'language' => $this->getConfig()->getLanguage(),
             'theme' => $this->getConfig()->getTheme(),
             'badge' => $this->getConfig()->getBadge(),
-            'size' => $this->getConfig()->getSize()
+            'size' => $this->getConfig()->getSize(),
         ];
 
         return $data;
@@ -55,14 +53,13 @@ class GoogleReCaptchaV2
      */
     public function render(...$ids)
     {
-        if (!$this->getConfig()->isServiceEnabled()) {
-            return null;
+        if (! $this->getConfig()->isServiceEnabled()) {
+            return;
         }
         $data = $this->prepareViewData($ids);
 
         return app('view')->make($this->getConfig()->getTemplate(), $data);
     }
-
 
     /**
      * @param $response
