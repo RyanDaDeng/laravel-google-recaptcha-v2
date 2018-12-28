@@ -38,7 +38,9 @@ If you want to use v3, please go to: https://github.com/RyanDaDeng/laravel-googl
 
 ## Description
 
-If you want to make your own validation rules, you have full access to modify template file, so you can customise your own template by reading through Google official guide for either invisible or inline. https://developers.google.com/recaptcha/docs/display
+A Laravel package for Google reCAPTCHA v2.
+
+If you want to make your own font-end validation rules, you have full access to modify template file, so you can customise your own template by reading through Google official guide for either invisible badge or inline checkbox. https://developers.google.com/recaptcha/docs/display
 
 ## Features
 
