@@ -20,6 +20,10 @@ If you want to use v3, please go to: https://github.com/RyanDaDeng/laravel-googl
 
 # DEMO
 
+## Checkbox
+
+<img src="https://github.com/RyanDaDeng/aws-study-notes/blob/master/0DB7E6BA-15ED-45E7-AA12-3CEA05E1483E.png" width="250" height="300" />
+
 ## Invisible
 
 <img src="https://github.com/RyanDaDeng/aws-study-notes/blob/master/881545398213_.pic.jpg" width="250" height="300" />

@@ -51,7 +51,7 @@ class ViewTest extends TestCase
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
-        $data = $service->prepareViewData('contact_us_id');
+        $data = $service->prepareViewData(['contact_us_id']);
 
         $this->assertEquals('test1', $data['publicKey']);
         $this->assertEquals('contact_us_id', $data['ids'][0]);
@@ -82,7 +82,7 @@ class ViewTest extends TestCase
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
-        $data = $service->prepareViewData('contact_us_id', 'contact_us_id2');
+        $data = $service->prepareViewData(['contact_us_id', 'contact_us_id2']);
 
         $this->assertEquals('test1', $data['publicKey']);
         $this->assertEquals('contact_us_id', $data['ids'][0]);
