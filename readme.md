@@ -95,7 +95,7 @@ If your Laravel framework version is >= 5.5, just run the following command to p
 $ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider" --tag=googlerecaptchav2.config
 ```
 
-If you want to modify or customise your own template, you can publish a default view first:
+Optional: if you want to modify or customise your own template, you can publish a default view first, and change 'template' in config file:
 
 ```sh 
 $ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider" --tag=googlerecaptchav2.views
@@ -144,6 +144,15 @@ The backend request will receive a value for 'g-recaptcha-response', please take
 
 #### Badge Display
 
+Importance: you can always make your own template, just assign your template in config:
+
+``` PHP
+    [
+        ...
+        'template' => 'test.template' // if your template is located at resources/views/test/template
+        ...
+    ]
+```
 
 ### Checkbox
 
