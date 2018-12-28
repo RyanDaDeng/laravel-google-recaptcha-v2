@@ -103,7 +103,7 @@ Optional: if you want to modify or customise your own template, you can publish 
 $ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider" --tag=googlerecaptchav2.views
 ```
 
-After installation, you should see a googlerecaptchaV2/template.blade under views folder and googlerecaptchaV2.php in your app/config folder.
+After installation, you should see a googlerecaptchav2/template.blade under views folder and googlerecaptchav2.php in your app/config folder.
 
 ## Basic Usage
 #### Setting up your Google reCAPTCHA details in config file
@@ -126,7 +126,6 @@ Include Template script in your bottom/header of your page, params should follow
 
 ``` PHP  
  {!!  GoogleReCaptchaV2::render('form_id_1','form_id_2') !!}
- {!!  GoogleReCaptchaV2::render('form_id_1') !!}
 ```
 
 ##### Example Usage
@@ -134,17 +133,23 @@ Include Template script in your bottom/header of your page, params should follow
 ``` html  
 <form method="POST" action="/verify">
     @csrf
-    <div id="contact_us_id"></div>
+    <div id="form_1_id"></div>
     <input type="submit" value="submit">
 </form>
 
-{!!  GoogleReCaptchaV2::render('contact_us_id') !!}
+<form method="POST" action="/verify">
+    @csrf
+    <div id="form_2_id"></div>
+    <input type="submit" value="submit">
+</form>
+
+{!!  GoogleReCaptchaV2::render('form_1_id','form_2_id') !!}
 
 ```
 
 The backend request will receive a value for 'g-recaptcha-response', please take a look at Sample Use Case and Facade usage sections.
 
-#### Badge Display
+## Badge Display
 
 Importance: you can always make your own template, just assign your template in config:
 
