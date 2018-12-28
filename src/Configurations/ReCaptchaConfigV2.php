@@ -2,7 +2,6 @@
 
 namespace TimeHunter\LaravelGoogleReCaptchaV2\Configurations;
 
-
 use TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\ReCaptchaConfigV2Interface;
 
 class ReCaptchaConfigV2 implements ReCaptchaConfigV2Interface

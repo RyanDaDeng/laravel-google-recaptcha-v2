@@ -21,7 +21,6 @@ class ViewTest extends TestCase
 
         $clientStub = $this->createMock(GuzzleRequestClient::class);
 
-
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);
 
@@ -48,7 +47,6 @@ class ViewTest extends TestCase
             ->willReturn('en');
 
         $clientStub = $this->createMock(GuzzleRequestClient::class);
-
 
         $_service = new GoogleReCaptchaV2Service($configStub, $clientStub);
         $service = new GoogleReCaptchaV2($_service);

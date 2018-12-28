@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: dadeng
  * Date: 2018/12/28
- * Time: 5:37 PM
+ * Time: 5:37 PM.
  */
 
 namespace TimeHunter\LaravelGoogleReCaptchaV2\Services;
@@ -14,7 +14,6 @@ use TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\ReCaptchaConfigV2Interface;
 
 class GoogleReCaptchaV2Service
 {
-
     public $config;
     public $requestClient;
 
@@ -36,7 +35,7 @@ class GoogleReCaptchaV2Service
      */
     public function verifyResponse($response, $ip = null)
     {
-        if (!$this->config->isServiceEnabled()) {
+        if (! $this->config->isServiceEnabled()) {
             $res = new GoogleReCaptchaV2Response([], $ip);
             $res->setSuccess(true);
 
@@ -71,13 +70,12 @@ class GoogleReCaptchaV2Service
             return $rawResponse;
         }
 
-        if (!empty($this->config->getHostName()) && strcasecmp($this->config->getHostName(), $rawResponse->getHostname()) !== 0) {
+        if (! empty($this->config->getHostName()) && strcasecmp($this->config->getHostName(), $rawResponse->getHostname()) !== 0) {
             $rawResponse->setMessage(GoogleReCaptchaV2Response::ERROR_HOSTNAME);
             $rawResponse->setSuccess(false);
 
             return $rawResponse;
         }
-
 
         $rawResponse->setSuccess(true);
         $rawResponse->setMessage('Successfully passed.');
