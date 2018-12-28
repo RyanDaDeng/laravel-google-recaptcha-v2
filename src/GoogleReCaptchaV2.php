@@ -34,7 +34,6 @@ class GoogleReCaptchaV2
      */
     public function prepareViewData($ids = [])
     {
-
         $data = [
             'publicKey' => $this->getConfig()->getSiteKey(),
             'ids' => $ids,
@@ -54,9 +53,8 @@ class GoogleReCaptchaV2
      */
     public function render(...$ids)
     {
-
-        if (!$this->getConfig()->isServiceEnabled()) {
-            return null;
+        if (! $this->getConfig()->isServiceEnabled()) {
+            return;
         }
         $data = $this->prepareViewData($ids);
 
