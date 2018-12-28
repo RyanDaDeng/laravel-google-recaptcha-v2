@@ -15,7 +15,10 @@
 [![StyleCI][ico-styleci]][link-styleci]
 [![Latest Unstable Version][ico-unstable]][link-unstable]
 
-This is a package for Google reCAPTCHA v2
+This is a package for Google reCAPTCHA v2.
+
+If you want to use v3, please go to: https://github.com/RyanDaDeng/laravel-google-recaptcha-v3
+
 # DEMO
 
 ## Invisible
@@ -32,19 +35,12 @@ This is a package for Google reCAPTCHA v2
 
 ## Description
 
-Google reCAPTCHA v2 is a new mechanism to verify whether the user is bot or not.
-
-reCAPTCHA v2 is intended for power users, site owners that want more data about their traffic, and for use cases in which it is not appropriate to show a challenge to the user.
-
-For example, a registration page might still use reCAPTCHA v2 for a higher-friction challenge, whereas more common actions like sign-in, searches, comments, or voting might use reCAPTCHA v2.
-
-Please check Google site: https://developers.google.com/recaptcha/docs/faq
+If you want to make your own validation rules, you have full access to modify template file, so you can customise your own template by reading through Google official guide for either invisible or inline. https://developers.google.com/recaptcha/docs/display
 
 ## Features
 
-- Score Comparision
 - Support invisible, global and inline badge style
-- Support multiple reCAPTCHA the same page for different forms
+- Support multiple reCAPTCHA on the same page for different forms
 - Support multiple actions to be placed on the same page
 - Support custom implementation on config interface
 - Support custom implementation on request method interface 
@@ -77,7 +73,7 @@ If your Laravel framework version <= 5.4, please register the service provider i
 ``` php
 'providers'=[
     ....,
-    TimeHunter\LaravelGoogleCaptchav2\Providers\GoogleReCaptchav2ServiceProvider::class
+    TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchav2ServiceProvider::class
 ]
 ```
 
@@ -85,39 +81,22 @@ And also
 ``` php
 'aliases'=[
      ....,
-     'GoogleReCaptchav2'=> TimeHunter\LaravelGoogleCaptchav2\Facades\GoogleReCaptchav2::class
+     'GoogleReCaptchav2'=> TimeHunter\LaravelGoogleReCaptchaV2\Facades\GoogleReCaptchav2::class
  ]
 ```
 
 
 If your Laravel framework version is >= 5.5, just run the following command to publish views and config.
 ```sh 
-$ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleCaptchav2\Providers\GoogleReCaptchav2ServiceProvider"
+$ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchav2ServiceProvider"
 ```
 
-After installation, you should see a googlerecaptchav2/field.blade and header.blade file in your views folder and googlerecaptchav2.php in your app/config folder.
+After installation, you should see a googlerecaptchav2/template.blade under views folder and googlerecaptchav2.php in your app/config folder.
 
 ## Basic Usage
 #### Setting up your Google reCAPTCHA details in config file
 
 Please register all details on host_name, site_key, secret_key and site_verify_url.
-
-Specify your Score threshold and action in 'setting', e.g.
-``` php
-      'setting' =  [
-          [
-            'action' => 'contact_us', // Google reCAPTCHA required paramater
-            'threshold' => 0.2, // score threshold
-            'is_enabled' => false // if this is true, the system will do score comparsion against your threshold for the action
-            ]
-        ]
-```        
-Note: if you want to enable Score Comparision, you also need to enable is_score_enabled to be true.
-``` php
-'is_score_enabled' = true
-```   
-
-For score comparision, all actions should be registered in googlerecaptchav2 config file under 'setting' section. 
 
 For more details please check comments in config file.
 
@@ -127,18 +106,15 @@ For more details please check comments in config file.
 Include div with an ID inside your form, e.g.
 
 ``` html  
- <div id="contact_us_id"></div>
+ <div id="form_id_1"></div>
+ <div id="form_id_2"></div>
 ```
 
 Include Template script in your bottom/header of your page, params should follow 'ID'=>'Action', e.g.
 
 ``` PHP  
- {!!  GoogleReCaptchav2::render(
-            [
-                'contact_us_id'=>'contact_us',  // the div id=contact_us_id maps to action name contact_us
-                'signin_id'=>'registration',  // the div id=signin_id maps to action name registration
-                'register_id'=>'registration'   // the div id=register_id maps to action name registration
-            ]) !!}
+ {!!  GoogleReCaptchav2::render('form_id_1','form_id_2') !!}
+ {!!  GoogleReCaptchav2::render('form_id_1') !!}
 ```
 
 ##### Example Usage
@@ -148,18 +124,9 @@ Include Template script in your bottom/header of your page, params should follow
     @csrf
     <div id="contact_us_id"></div>
     <input type="submit" value="submit">
-    <div>
-        <small>
-            This site is protected by reCAPTCHA and the Google
-            <a href="https://policies.google.com/privacy">Privacy Policy</a> and
-            <a href="https://policies.google.com/terms">Terms of Service</a> apply.
-        </small>
-    </div>
 </form>
 
-{!!  GoogleReCaptchav2::render([
-               'contact_us_id'=>'contact_us'
-           ]) !!}
+{!!  GoogleReCaptchav2::render('contact_us_id'=>'contact_us') !!}
 
 ```
 
@@ -173,7 +140,7 @@ Inline
 ``` PHP
     [
         ...
-        'inline' => true
+        'badge' => 'inline'
         ...
     ]
 ```
@@ -182,7 +149,14 @@ Inline
 
 Invisible
 
-1. Set inline as true as well
+1. Set size as invisible
+``` PHP
+    [
+        ...
+        'size' => 'invisible'
+        ...
+    ]
+```
 2. Modify your div with style display:none
 3. Refer to Google official site: https://developers.google.com/recaptcha/docs/faq
 , you need to include the following text:
@@ -194,36 +168,41 @@ Invisible
 
 Corner
 
-1. Set inline as false
-2. Your badge will be shown in the bottom right side.
-
-Custom
-
-1. Set inline as true
-2. Do Styling/CSS on its div element
-
+1. Set size as invisible
+``` PHP
+    [
+        ...
+        'size' => 'invisible'
+        ...
+    ]
+```
+2. Set badge as bottomright/bottomleft
+``` PHP
+    [
+        ...
+        'badge' => 'bottomright'
+        ...
+    ]
+```
 
 ## Validation Class (Only support Laravel >= 5.5)
    
    You can use provided Validation object to verify your reCAPTCHA.
       
 ``` php
-   use TimeHunter\LaravelGoogleCaptchav2\Validations\GoogleReCaptchaValidationRule
+   use TimeHunter\LaravelGoogleReCaptchaV2\Validations\GoogleReCaptchaV2ValidationRule
    $rule = [
-            'g-recaptcha-response' => [new GoogleReCaptchaValidationRule('action_name')]
+            'g-recaptcha-response' => [new GoogleReCaptchaV2ValidationRule()]
         ];
 ```
-
-   -  $actionName: if its NULL, the package won't verify action with google response.
   
 ## Facade Usage
 
 You can also directly use registered service by calling the following method.
-- setAction() is optional only if you want to verify if the action is matched.
 - verifyResponse() which accepts the token value from your form. This return Google reCAPTCHA Response object.
 
 ``` php
-   GoogleReCaptchav2::setAction($action)->verifyResponse($value);
+   GoogleReCaptchav2::setAction($action)->verifyResponse($value, $ip=null);
 ```
 
 Example Usage
@@ -232,7 +211,6 @@ Example Usage
    GoogleReCaptchav2::verifyResponse($value,$ip)->getMessage();
    GoogleReCaptchav2::verifyResponse($value)->isSuccess();
    GoogleReCaptchav2::verifyResponse($value)->toArray();
-   GoogleReCaptchav2::setAction($action)->verifyResponse($value)->isSuccess();
 ```
 
 ``` php
@@ -241,33 +219,19 @@ Example Usage
 
 ## Sample Use Case
 
-Register your action in config, also enable score and set up your own site key and secret key:
-``` php
-    'setting' => [
-        [
-            'action' => 'contact_us',
-            'threshold' => 2,
-            'score_comparision' => true
-        ],
-        [
-            'action' => 'signup',
-            'threshold' => 0.2,
-            'score_comparision' => true
-        ],
-    ]
-```
+1. Register your action in config, also enable score and set up your own site key and secret key:
 
-Register two routes in web.php
+2. Register two routes in web.php
 ``` php
 Route::get('/index', 'ReCaptchaController@index');
 Route::post('/verify', 'ReCaptchaController@verify');
 ```
 
-Create two functions in controller:
+3. Create two functions in controller:
 ``` php
     public function verify(Request $request)
     {
-        dd(GoogleReCaptchav2::verifyResponse($request->input('g-recaptcha-response'))->getMessage());
+        dd(GoogleReCaptchaV2::verifyResponse($request->input('g-recaptcha-response'))->getMessage());
     }
     public function index(Request $request)
     {
@@ -275,7 +239,7 @@ Create two functions in controller:
    }
 ```
 
-Create your form in index.blade.php:
+4. Create your form in index.blade.php:
 ``` html
 <form method="POST" action="/verify">
     @csrf
@@ -290,26 +254,37 @@ Create your form in index.blade.php:
     <input type="submit" value="submit">
 </form>
 
-{!!  GoogleReCaptchav2::render(['contact_us_id'=>'contact_us', 'signup_id'=>'signup']) !!}
+{!!  GoogleReCaptchav2::render('contact_us_id') !!}
 ```
 
-Go to /index and click submit button on contact us form and you should see an error message that 'Score does not meet the treshhold' because the threshold >2. You can play around the controller to see all outcomes. Importantly, you need to wait the script to load and render the token before clicking the submit button.
 
 ## Advanced Usage
+
+#### Custom implementation on Template
+    
+After publish views, a blade file created under googlerecaptchav2, you can customise it and change template value in config file, e.g. if your template is saved in resources/views/test/template, you should put values as below:
+``` PHP
+    [
+        ...
+        'template' => 'test.template'
+        ...
+    ]
+```
+
 
 #### Custom implementation on Config
     
 For some users, they might store the config details in their own storage e.g database. You can create your own class and implement:
 
 ```
-TimeHunter\LaravelGoogleCaptchav2\Interfaces\ReCaptchaConfigv2Interface
+TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\ReCaptchaConfigv2Interface
 ```
 
 Remember to register it in your own service provider
 
 ``` php
      $this->app->bind(
-                ReCaptchaConfigv2Interface::class,
+                ReCaptchaConfigV2Interface::class,
                 YourOwnCustomImplementation::class
             );
 ```
@@ -318,7 +293,7 @@ Remember to register it in your own service provider
 
 The package has two default options to verify: Guzzle and Curl, if you want to use your own request method, You can create your own class and implement 
 ```
-TimeHunter\LaravelGoogleCaptchav2\Interfaces\RequestClientInterface
+TimeHunter\LaravelGoogleReCaptchaV2\Interfaces\RequestClientInterface
 ```
 
 Remember to register it in your own service provider
