@@ -15,10 +15,7 @@
 [![StyleCI][ico-styleci]][link-styleci]
 [![Latest Unstable Version][ico-unstable]][link-unstable]
 
-I will be super happy if you think this package is good and also star me.  ^.^
-
-PS: The version "~3.*" contains vue component which is unstable and incomplete right now, feel free to install it if you really want to use vue. It will be released soon.
-
+This is a package for Google reCAPTCHA v2
 # DEMO
 
 ## Invisible

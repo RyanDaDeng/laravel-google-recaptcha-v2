@@ -33,14 +33,14 @@ class GoogleReCaptchaV2
      * @param $ids
      * @return array
      */
-    public function prepareViewData($ids)
+    public function prepareViewData(...$ids)
     {
 
         $data = [
             'publicKey' => $this->getConfig()->getSiteKey(),
             'ids' => $ids,
             'inline' => $this->getConfig()->isInline(),
-            'language' =>  $this->getConfig()->getLanguage(),
+            'language' => $this->getConfig()->getLanguage(),
             'theme' => $this->getConfig()->getTheme(),
             'badge' => $this->getConfig()->getBadge(),
             'size' => $this->getConfig()->getSize()
@@ -71,7 +71,7 @@ class GoogleReCaptchaV2
      */
     public function verifyResponse($response, $ip = null)
     {
-       return $this->service->verifyResponse($response,$ip);
+        return $this->service->verifyResponse($response, $ip);
     }
 
     /**
