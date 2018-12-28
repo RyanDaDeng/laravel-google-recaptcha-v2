@@ -13,7 +13,6 @@
 [![Coverage Status][ico-coverage]][link-coverage]
 [![Build][ico-build]][link-build]
 [![StyleCI][ico-styleci]][link-styleci]
-[![Latest Unstable Version][ico-unstable]][link-unstable]
 
 This is a package for Google reCAPTCHA v2.
 
