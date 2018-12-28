@@ -73,7 +73,7 @@ If your Laravel framework version <= 5.4, please register the service provider i
 ``` php
 'providers'=[
     ....,
-    TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchav2ServiceProvider::class
+    TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider::class
 ]
 ```
 
@@ -81,17 +81,17 @@ And also
 ``` php
 'aliases'=[
      ....,
-     'GoogleReCaptchav2'=> TimeHunter\LaravelGoogleReCaptchaV2\Facades\GoogleReCaptchav2::class
+     'GoogleReCaptchaV2'=> TimeHunter\LaravelGoogleReCaptchaV2\Facades\GoogleReCaptchaV2::class
  ]
 ```
 
 
 If your Laravel framework version is >= 5.5, just run the following command to publish views and config.
 ```sh 
-$ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchav2ServiceProvider"
+$ php artisan vendor:publish --provider="TimeHunter\LaravelGoogleReCaptchaV2\Providers\GoogleReCaptchaV2ServiceProvider"
 ```
 
-After installation, you should see a googlerecaptchav2/template.blade under views folder and googlerecaptchav2.php in your app/config folder.
+After installation, you should see a googlerecaptchaV2/template.blade under views folder and googlerecaptchaV2.php in your app/config folder.
 
 ## Basic Usage
 #### Setting up your Google reCAPTCHA details in config file
@@ -113,8 +113,8 @@ Include div with an ID inside your form, e.g.
 Include Template script in your bottom/header of your page, params should follow 'ID'=>'Action', e.g.
 
 ``` PHP  
- {!!  GoogleReCaptchav2::render('form_id_1','form_id_2') !!}
- {!!  GoogleReCaptchav2::render('form_id_1') !!}
+ {!!  GoogleReCaptchaV2::render('form_id_1','form_id_2') !!}
+ {!!  GoogleReCaptchaV2::render('form_id_1') !!}
 ```
 
 ##### Example Usage
@@ -126,7 +126,7 @@ Include Template script in your bottom/header of your page, params should follow
     <input type="submit" value="submit">
 </form>
 
-{!!  GoogleReCaptchav2::render('contact_us_id'=>'contact_us') !!}
+{!!  GoogleReCaptchaV2::render('contact_us_id'=>'contact_us') !!}
 
 ```
 
@@ -202,19 +202,19 @@ You can also directly use registered service by calling the following method.
 - verifyResponse() which accepts the token value from your form. This return Google reCAPTCHA Response object.
 
 ``` php
-   GoogleReCaptchav2::setAction($action)->verifyResponse($value, $ip=null);
+   GoogleReCaptchaV2::setAction($action)->verifyResponse($value, $ip=null);
 ```
 
 Example Usage
 
 ``` php
-   GoogleReCaptchav2::verifyResponse($value,$ip)->getMessage();
-   GoogleReCaptchav2::verifyResponse($value)->isSuccess();
-   GoogleReCaptchav2::verifyResponse($value)->toArray();
+   GoogleReCaptchaV2::verifyResponse($value,$ip)->getMessage();
+   GoogleReCaptchaV2::verifyResponse($value)->isSuccess();
+   GoogleReCaptchaV2::verifyResponse($value)->toArray();
 ```
 
 ``` php
-   GoogleReCaptchav2::verifyResponse($request->input('g-recaptcha-response'))->getMessage()
+   GoogleReCaptchaV2::verifyResponse($request->input('g-recaptcha-response'))->getMessage()
 ```
 
 ## Sample Use Case
@@ -254,7 +254,7 @@ Route::post('/verify', 'ReCaptchaController@verify');
     <input type="submit" value="submit">
 </form>
 
-{!!  GoogleReCaptchav2::render('contact_us_id') !!}
+{!!  GoogleReCaptchaV2::render('contact_us_id') !!}
 ```
 
 
@@ -262,7 +262,7 @@ Route::post('/verify', 'ReCaptchaController@verify');
 
 #### Custom implementation on Template
     
-After publish views, a blade file created under googlerecaptchav2, you can customise it and change template value in config file, e.g. if your template is saved in resources/views/test/template, you should put values as below:
+After publish views, a blade file created under googlerecaptchaV2, you can customise it and change template value in config file, e.g. if your template is saved in resources/views/test/template, you should put values as below:
 ``` PHP
     [
         ...
