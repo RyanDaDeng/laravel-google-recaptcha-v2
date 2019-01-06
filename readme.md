@@ -122,7 +122,7 @@ Include div with an ID inside your form, e.g.
  <div id="form_id_2"></div>
 ```
 
-Include Template script in your bottom/header of your page, params should follow 'ID'=>'Action', e.g.
+Include Template script in your bottom/header of your page, e.g.
 
 ``` PHP  
  {!!  GoogleReCaptchaV2::render('form_id_1','form_id_2') !!}
