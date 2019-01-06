@@ -183,7 +183,7 @@ Importance: you can always make your own template, just assign your template in 
         ...
     ]
 ```
-2. Set badge as bottomright/bottomleft
+2. Set badge as inline
 ``` PHP
     [
         ...
