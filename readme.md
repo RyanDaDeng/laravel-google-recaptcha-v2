@@ -299,7 +299,7 @@ Route::post('/verify', 'ReCaptchaController@verify');
     <input type="submit" value="submit">
 </form>
 
-{!!  GoogleReCaptchaV2::render('contact_us_id') !!}
+{!!  GoogleReCaptchaV2::render('contact_us_id','signup_id') !!}
 ```
 
 
