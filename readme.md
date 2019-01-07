@@ -183,11 +183,11 @@ Importance: you can always make your own template, just assign your template in 
         ...
     ]
 ```
-2. Set badge as inline
+2. Set badge as inline or bottomright or bottomleft
 ``` PHP
     [
         ...
-        'badge' => 'inline'
+        'badge' => 'inline' // also support: bottomright,bottomleft
         ...
     ]
 ```
