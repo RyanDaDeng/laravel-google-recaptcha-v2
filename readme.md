@@ -14,6 +14,9 @@
 [![Build][ico-build]][link-build]
 [![StyleCI][ico-styleci]][link-styleci]
 
+
+welcome all tickes (features/questions/bugs/improvements), I will responded all tickets within 48 hours.
+
 This is a package for Google reCAPTCHA v2.
 
 If you want to use v3, please go to: https://github.com/RyanDaDeng/laravel-google-recaptcha-v3
