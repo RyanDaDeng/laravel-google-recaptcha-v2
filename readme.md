@@ -15,7 +15,7 @@
 [![StyleCI][ico-styleci]][link-styleci]
 
 
-welcome all tickes (features/questions/bugs/improvements), I will responded all tickets within 48 hours.
+Welcome all tickets (features/questions/bugs/improvements), I will responded all tickets within 48 hours.
 
 This is a package for Google reCAPTCHA v2.
 
