@@ -23,7 +23,7 @@ class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'GoogleReCaptchaV2');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'GoogleReCaptchaV2');
 
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
@@ -73,19 +73,18 @@ class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../../config/googlerecaptchav2.php', 'googlerecaptchav2'
+            __DIR__.'/../../config/googlerecaptchav2.php', 'googlerecaptchav2'
         );
 
         $laravel = app();
         $version = $laravel::VERSION;
 
         if (version_compare($version, '5.7.*') === 1 || version_compare($version, '5.6.*') === 1 || version_compare($version, '5.5.*') === 1) {
-
-            if (!$this->app->has(ReCaptchaConfigV2Interface::class)) {
+            if (! $this->app->has(ReCaptchaConfigV2Interface::class)) {
                 $this->bindConfig();
             }
             // default strategy
-            if (!$this->app->has(RequestClientInterface::class)) {
+            if (! $this->app->has(RequestClientInterface::class)) {
                 switch ($this->app->get(ReCaptchaConfigV2Interface::class)->getRequestMethod()) {
                     case 'guzzle':
                         $this->app->bind(
@@ -128,12 +127,12 @@ class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__ . '/../../config/googlerecaptchav2.php' => config_path('googlerecaptchav2.php'),
+            __DIR__.'/../../config/googlerecaptchav2.php' => config_path('googlerecaptchav2.php'),
         ], 'googlerecaptchav2.config');
 
         // Publishing the views.
         $this->publishes([
-            __DIR__ . '/../../resources/views' => base_path('resources/views'),
+            __DIR__.'/../../resources/views' => base_path('resources/views'),
         ], 'googlerecaptchav2.views');
     }
 
