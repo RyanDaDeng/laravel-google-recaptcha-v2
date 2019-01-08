@@ -117,6 +117,8 @@ For more details please check comments in config file.
 
 #### Display reCAPTCHA v2
 
+Note: for styling with reCAPTCHA v2 badge, the official site does not support it. You can still customise it on its div element if you want.
+
 ##### Blade
 Include div with an ID inside your form, e.g.
 
