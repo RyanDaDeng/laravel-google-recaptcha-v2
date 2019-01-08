@@ -4,6 +4,7 @@
   Author: ryandeng
   -->
   <meta name='keywords' content='recaptcha v2,laravel recaptcha v2,laravel google recaptcha v2,google recaptcha v2,laravel recaptcha'>
+  
 # Laravel Package for Google reCAPTCHA v2
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
