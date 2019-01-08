@@ -53,11 +53,10 @@ class GoogleReCaptchaV2
      */
     public function render(...$ids)
     {
-        if (! $this->getConfig()->isServiceEnabled()) {
+        if (!$this->getConfig()->isServiceEnabled()) {
             return;
         }
         $data = $this->prepareViewData($ids);
-
         return app('view')->make($this->getConfig()->getTemplate(), $data);
     }
 

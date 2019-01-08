@@ -19,7 +19,7 @@ class ReCaptchaConfigV2 implements ReCaptchaConfigV2Interface
      */
     public function isServiceEnabled()
     {
-        return config('googlerecaptchav2.site_key');
+        return config('googlerecaptchav2.is_service_enabled');
     }
 
     /**
