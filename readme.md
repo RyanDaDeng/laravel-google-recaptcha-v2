@@ -3,7 +3,6 @@
   Description: Laravel package for recaptcha v2.
   Author: ryandeng
   -->
-  
   <meta name='keywords' content='recaptcha v2,laravel recaptcha v2,laravel google recaptcha v2,google recaptcha v2,laravel recaptcha'>
 
 # Laravel Package for Google reCAPTCHA v2
