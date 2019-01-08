@@ -134,6 +134,7 @@ Include Template script in your bottom/header of your page, e.g.
 ##### Example Usage
 
 ``` html  
+{{--if laravel version <=5.6, please use {{ csrf_field() }}--}}
 <form method="POST" action="/verify">
     @csrf
     <div id="form_1_id"></div>
@@ -289,6 +290,8 @@ Route::post('/verify', 'ReCaptchaController@verify');
 
 4. Create your form in index.blade.php:
 ``` html
+{{--if laravel version <=5.6, please use {{ csrf_field() }}--}}
+
 <form method="POST" action="/verify">
     @csrf
     <div id="contact_us_id"></div>

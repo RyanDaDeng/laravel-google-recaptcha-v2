@@ -23,10 +23,45 @@ class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'GoogleReCaptchaV2');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'GoogleReCaptchaV2');
 
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
+        }
+    }
+
+    public function bindConfig()
+    {
+        $this->app->bind(
+            ReCaptchaConfigV2Interface::class,
+            ReCaptchaConfigV2::class
+        );
+    }
+
+    /**
+     * @param $method
+     */
+    public function bindRequest($method)
+    {
+        switch ($method) {
+            case 'guzzle':
+                $this->app->bind(
+                    RequestClientInterface::class,
+                    GuzzleRequestClient::class
+                );
+                break;
+            case'curl':
+                $this->app->bind(
+                    RequestClientInterface::class,
+                    CurlRequestClient::class
+                );
+                break;
+            default:
+                $this->app->bind(
+                    RequestClientInterface::class,
+                    CurlRequestClient::class
+                );
+                break;
         }
     }
 
@@ -38,39 +73,45 @@ class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../../config/googlerecaptchav2.php', 'googlerecaptchav2'
+            __DIR__ . '/../../config/googlerecaptchav2.php', 'googlerecaptchav2'
         );
 
-        if (! $this->app->has(ReCaptchaConfigV2Interface::class)) {
-            $this->app->bind(
-                ReCaptchaConfigV2Interface::class,
-                ReCaptchaConfigV2::class
-            );
+        $laravel = app();
+        $version = $laravel::VERSION;
+
+        if (version_compare($version, '5.7.*') === 1 || version_compare($version, '5.6.*') === 1 || version_compare($version, '5.5.*') === 1) {
+
+            if (!$this->app->has(ReCaptchaConfigV2Interface::class)) {
+                $this->bindConfig();
+            }
+            // default strategy
+            if (!$this->app->has(RequestClientInterface::class)) {
+                switch ($this->app->get(ReCaptchaConfigV2Interface::class)->getRequestMethod()) {
+                    case 'guzzle':
+                        $this->app->bind(
+                            RequestClientInterface::class,
+                            GuzzleRequestClient::class
+                        );
+                        break;
+                    case'curl':
+                        $this->app->bind(
+                            RequestClientInterface::class,
+                            CurlRequestClient::class
+                        );
+                        break;
+                    default:
+                        $this->app->bind(
+                            RequestClientInterface::class,
+                            CurlRequestClient::class
+                        );
+                        break;
+                }
+            }
+        } else {
+            $this->bindConfig();
+            $this->bindRequest(app(ReCaptchaConfigV2Interface::class)->getRequestMethod());
         }
 
-        // default strategy
-        if (! $this->app->has(RequestClientInterface::class)) {
-            switch ($this->app->get(ReCaptchaConfigV2Interface::class)->getRequestMethod()) {
-                case 'guzzle':
-                    $this->app->bind(
-                        RequestClientInterface::class,
-                        GuzzleRequestClient::class
-                    );
-                    break;
-                case'curl':
-                    $this->app->bind(
-                        RequestClientInterface::class,
-                        CurlRequestClient::class
-                    );
-                    break;
-                default:
-                    $this->app->bind(
-                        RequestClientInterface::class,
-                        CurlRequestClient::class
-                    );
-                    break;
-            }
-        }
         $this->app->bind('GoogleReCaptchaV2', function () {
             $service = new GoogleReCaptchaV2Service(app(ReCaptchaConfigV2Interface::class), app(RequestClientInterface::class));
 
@@ -87,12 +128,12 @@ class GoogleReCaptchaV2ServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../../config/googlerecaptchav2.php' => config_path('googlerecaptchav2.php'),
+            __DIR__ . '/../../config/googlerecaptchav2.php' => config_path('googlerecaptchav2.php'),
         ], 'googlerecaptchav2.config');
 
         // Publishing the views.
         $this->publishes([
-            __DIR__.'/../../resources/views' => base_path('resources/views'),
+            __DIR__ . '/../../resources/views' => base_path('resources/views'),
         ], 'googlerecaptchav2.views');
     }
 
