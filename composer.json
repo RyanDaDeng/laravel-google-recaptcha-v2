@@ -1,6 +1,6 @@
 {
     "name": "timehunter/laravel-google-recaptcha-v2",
-    "description": "Laravel Package for reCAPTCHA v2",
+    "description": "Laravel Package for google reCAPTCHA v2",
     "license": "MIT",
     "authors": [
         {
