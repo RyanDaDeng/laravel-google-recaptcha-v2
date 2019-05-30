@@ -27,7 +27,7 @@ class GuzzleRequestClient implements RequestClientInterface
         } catch (ClientException $e) {
             return '{"success": false, "error-codes": ["Guzzle Client Error Code: '.$e->getCode().'"]}';
         } catch (ConnectException $e) {
-            return '{"success": false, "error-codes": ["Guzzle Client Error Code: '.GoogleReCaptchaV3Response::ERROR_TIMEOUT.'"]}';
+            return '{"success": false, "error-codes": ["Guzzle Client Error Code: '.GoogleReCaptchaV2Response::ERROR_TIMEOUT.'"]}';
         }
     }
 }

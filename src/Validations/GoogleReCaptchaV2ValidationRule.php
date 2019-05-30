@@ -28,7 +28,6 @@ class GoogleReCaptchaV2ValidationRule implements ImplicitRule
     public function passes($attribute, $value)
     {
         $response = GoogleReCaptchaV2::verifyResponse($value, app('request')->getClientIp());
-        dd(json_encode($response->toArray()));
         $this->message = $response->getMessage();
 
         return $response->isSuccess();
