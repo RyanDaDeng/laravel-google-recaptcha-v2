@@ -11,7 +11,10 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Coverage Status][ico-coverage]][link-coverage]
 [![Build][ico-build]][link-build]
+
+<!--
 [![StyleCI][ico-styleci]][link-styleci]
+-->
 
 
 Welcome all tickets (features/questions/bugs/improvements), I will respond to all tickets within 48 hours.
@@ -356,6 +359,10 @@ Remember to register it in your own service provider
             );
 ```
 
+
+## Contributers
+
+@markheramis
 
 ## Security
 
